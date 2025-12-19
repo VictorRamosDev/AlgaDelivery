@@ -1,0 +1,8 @@
+-- Dados de acesso ao servidor mysql web (phpMyAdmin):
+servidor: mysql
+usuário: mysql (ou root para ter acesso a todos os privilégios de usuário)
+senha: algadelivery
+
+// Usuários - phpmyadmin:
+// root (create, select, drop, etc...)
+// mysql (select)
