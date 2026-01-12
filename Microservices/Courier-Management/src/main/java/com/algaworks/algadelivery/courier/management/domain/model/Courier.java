@@ -31,7 +31,7 @@ public class Courier {
 
     private List<AssignedDelivery> pendingDeliveries = new ArrayList<>();
 
-    private List<AssignedDelivery> getPendingDeliveries() {
+    public List<AssignedDelivery> getPendingDeliveries() {
         return Collections.unmodifiableList(this.pendingDeliveries);
     }
 
@@ -45,5 +45,27 @@ public class Courier {
 
         return courier;
     }
+
+    public void assign(UUID deliveryId) {
+        AssignedDelivery delivery = AssignedDelivery.pending(deliveryId);
+        this.pendingDeliveries.add(delivery);
+
+        this.setPendingDeliveriesQuantity(this.getPendingDeliveries().size());
+    }
+
+    public void fulfill(UUID deliveryId) {
+        AssignedDelivery delivery = this.pendingDeliveries.stream()
+                .filter(d -> d.getId().equals(deliveryId))
+                .findFirst()
+                .orElseThrow();
+
+        this.pendingDeliveries.remove(delivery);
+
+        this.setPendingDeliveriesQuantity(this.pendingDeliveries.size());
+        this.setFulfilledDeliveriesQuantity(this.getFulfilledDeliveriesQuantity() + 1);
+        this.setLastFulfilledDeliveryAt(OffsetDateTime.now());
+    }
+
+
 
 }

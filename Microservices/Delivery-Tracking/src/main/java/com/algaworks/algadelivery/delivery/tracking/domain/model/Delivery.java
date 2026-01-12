@@ -99,7 +99,7 @@ public class Delivery {
     }
 
     public void changeItemQuantity(UUID itemId, int quantity) {
-        Item item = this.getItems().stream().filter(i -> i.getId().equals(itemId)).findFirst().orElseThrow();
+        Item item = this.items.stream().filter(i -> i.getId().equals(itemId)).findFirst().orElseThrow();
         item.setQuantity(quantity);
         calculateTotalItems();
     }
@@ -113,7 +113,7 @@ public class Delivery {
     }
 
     private void calculateTotalItems() {
-        int totalItems = this.getItems().stream().mapToInt(Item::getQuantity).sum();
+        int totalItems = this.items.stream().mapToInt(Item::getQuantity).sum();
         this.setTotalItems(totalItems);
     }
 
