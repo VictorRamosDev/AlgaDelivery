@@ -1,28 +1,58 @@
 services:
-  mysql:
+  mysql-delivery:
+    container_name: mysql-delivery
     image: mysql:8.0
     platform: linux/amd64
     environment:
-      MYSQL_ROOT_PASSWORD: algadelivery
-      MYSQL_DATABASE: mysql
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: deliverydb
       MYSQL_USER: mysql
-      MYSQL_PASSWORD: algadelivery
+      MYSQL_PASSWORD: 12345
     volumes:
       - mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - local-network
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+
+  mysql-courier:
+    container_name: mysql-courier
+    image: mysql:8.0
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: courierdb
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: 12345
+    volumes:
+      - mysql-courier-data:/var/lib/mysql
     ports:
       - 3307:3306
     networks:
       - local-network
-    command: --default-authentication-plugin=12345
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
 
   phpmyadmin:
+    container_name: phpmyadmin-algadelivery
     image: phpmyadmin:latest
     platform: linux/amd64
     depends_on:
-      - mysql
+      mysql-delivery:
+        condition: service_healthy
+      mysql-courier:
+        condition: service_healthy
     environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
+      PMA_HOSTS: mysql-delivery,mysql-courier
+      PMA_VERBOSES: Banco_Delivery,Banco_Courier
       PMA_ARBITRARY: 1
     ports:
       - 8083:80
@@ -31,6 +61,7 @@ services:
 
 volumes:
   mysql-data:
+  mysql-courier-data:
 
 networks:
   local-network:

@@ -1,13 +1,17 @@
 package com.algaworks.algadelivery.delivery.tracking.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import jakarta.persistence.Embeddable;
+import lombok.*;
+
+/**
+    Value Object
+*/
 
 @Getter
 @Builder
+@Embeddable
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
 public class ContactPoint {
 

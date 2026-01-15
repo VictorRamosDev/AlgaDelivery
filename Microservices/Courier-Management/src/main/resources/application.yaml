@@ -6,8 +6,8 @@ spring:
     name: Courier-Management
 
   datasource:
-    url: jdbc:mysql://localhost:3306/algadelivery?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: root
+    url: jdbc:mysql://localhost:3307/courierdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: mysql #root #(caso execute localmente)
     password: 12345
 
   jpa:

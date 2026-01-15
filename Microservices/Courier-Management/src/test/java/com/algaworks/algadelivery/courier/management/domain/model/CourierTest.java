@@ -12,13 +12,12 @@ class CourierTest {
     public void shouldAssignToCourier() {
         Courier courier = Courier.brandNew("Antonio Kelven de Sousa", "(11) 98765-4321");
         UUID uuid = UUID.randomUUID();
-        AssignedDelivery delivery = AssignedDelivery.pending(uuid);
-
-        courier.assign(uuid);
+        AssignedDelivery delivery = courier.assign(uuid);
 
         assertEquals(uuid, delivery.getId());
         assertNotNull(delivery.getAssignedAt());
         assertEquals(1, courier.getPendingDeliveries().size());
+        assertEquals(courier.getPendingDeliveries().get(0).getId(), delivery.getId());
     }
 
 }
