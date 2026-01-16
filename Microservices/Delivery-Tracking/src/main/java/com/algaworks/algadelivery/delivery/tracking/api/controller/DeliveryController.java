@@ -1,5 +1,6 @@
 package com.algaworks.algadelivery.delivery.tracking.api.controller;
 
+import com.algaworks.algadelivery.delivery.tracking.api.model.CourierIdInput;
 import com.algaworks.algadelivery.delivery.tracking.api.model.DeliveryInput;
 import com.algaworks.algadelivery.delivery.tracking.domain.model.Delivery;
 import com.algaworks.algadelivery.delivery.tracking.domain.repository.DeliveryRepository;
@@ -44,6 +45,21 @@ public class DeliveryController {
     @GetMapping("/{deliveryId}")
     public Delivery findById(@PathVariable UUID deliveryId) {
         return deliveryRepository.findById(deliveryId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/{deliveryId}/placement")
+    public void place(@PathVariable UUID deliveryId) {
+
+    }
+
+    @PostMapping("/{deliveryId}/pickups")
+    public void pickup(@PathVariable UUID deliveryId, @RequestBody @Valid CourierIdInput input) {
+
+    }
+
+    @PostMapping("/{deliveryId}/completion")
+    public void complete(@PathVariable UUID deliveryId) {
+
     }
 
 }
