@@ -27,4 +27,6 @@ spring:
       properties:
         # Opcional: Para melhorar visual/informação do typeId no KafkaUI
         spring.json.type.mapping:
-          delivery-placed-event:com.algaworks.algadelivery.delivery.tracking.domain.event.DeliveryPlacedEvent
+          delivery-placed-event:com.algaworks.algadelivery.delivery.tracking.domain.event.DeliveryPlacedEvent,
+          delivery-picked-up-event:com.algaworks.algadelivery.delivery.tracking.domain.event.DeliveryPickUpEvent,
+          delivery-fulfilled-event:com.algaworks.algadelivery.delivery.tracking.domain.event.DeliveryFulfilledEvent

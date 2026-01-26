@@ -12,7 +12,7 @@
 	<artifactId>Courier-Management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Courier-Management</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Microsserviço de Entregador</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -52,6 +52,15 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.42</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
