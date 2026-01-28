@@ -10,7 +10,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class DeliveryPlacedIntegrationEvent {
 
-    private OffsetDateTime ocurredAt;
+    private OffsetDateTime occurredAt;
 
     private UUID deliveryId;
 }
