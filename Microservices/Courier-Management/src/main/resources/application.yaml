@@ -32,3 +32,11 @@ spring:
           delivery-placed-event:com.algaworks.algadelivery.courier.management.infrastructure.event.DeliveryPlacedIntegrationEvent,
           delivery-picked-up-event:com.fasterxml.jackson.databind.JsonNode,
           delivery-fulfilled-event:com.algaworks.algadelivery.courier.management.infrastructure.event.DeliveryFulfilledIntegrationEvent
+
+eureka:
+  instance:
+    instance-id: ${random.value} #local pode ser aleatorio # name+port?
+    prefer-ip-address: true #melhor para testes locais
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
