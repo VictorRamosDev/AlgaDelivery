@@ -9,6 +9,7 @@ import com.algaworks.algadelivery.courier.management.domain.service.CourierPayou
 import com.algaworks.algadelivery.courier.management.domain.service.CourierRegistrationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedModel;
@@ -19,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/couriers")
@@ -43,6 +45,7 @@ public class CourierController {
 
     @GetMapping
     public PagedModel<Courier> listAll(@PageableDefault Pageable pageable) {
+        log.info("ListAll Request");
         return new PagedModel<>(courierRepository.findAll(pageable));
     }
 
