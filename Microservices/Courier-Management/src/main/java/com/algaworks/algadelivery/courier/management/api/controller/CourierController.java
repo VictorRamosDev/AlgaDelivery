@@ -61,7 +61,7 @@ public class CourierController {
     public CourierPayoutResultModel calculate(@RequestBody @Valid CourierPayoutCalculationInput input) {
         log.info("Calculating...");
 
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.8) {
             throw new RuntimeException();
         }
 
