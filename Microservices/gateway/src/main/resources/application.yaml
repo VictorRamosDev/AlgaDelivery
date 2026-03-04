@@ -14,6 +14,17 @@ spring:
           predicates:
             - Path=/api/v1/deliveries/**,/api/v1/track/**
             - Method=GET,POST,PUT,DELETE,OPTIONS
+          filters:
+            - name: Retry
+              args:
+                retries: 3
+                statuses: INTERNAL_SERVER_ERROR, BAD_GATEWAY
+                method: GET,PUT
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 30ms
+                  factor: 2
+                timeout: 400ms
         - id: courier-management-route
           uri: lb://courier-management
           predicates:
