@@ -5,6 +5,9 @@ spring:
     name: gateway
   cloud:
     gateway.server.webflux:
+      httpclient:
+        connect-timeout: 10 #ms
+        response-timeout: 300ms
       routes:
         - id: delivery-tracking-route
           uri: lb://delivery-tracking

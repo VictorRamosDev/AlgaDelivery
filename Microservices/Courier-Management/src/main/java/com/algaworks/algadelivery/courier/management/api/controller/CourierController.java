@@ -61,12 +61,12 @@ public class CourierController {
     public CourierPayoutResultModel calculate(@RequestBody @Valid CourierPayoutCalculationInput input) {
         log.info("Calculating...");
 
-        if (Math.random() < 0.8) {
+        if (Math.random() < 0.2) {
             throw new RuntimeException();
         }
 
-        int millis = new Random().nextInt(500);
-        Thread.sleep(millis);
+//        int millis = new Random().nextInt(500);
+//        Thread.sleep(millis);
 
         BigDecimal payoutFee = courierPayoutService.calculatePayout(input.getDistanceInKm());
         return new CourierPayoutResultModel(payoutFee);
